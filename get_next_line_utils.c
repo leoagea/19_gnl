@@ -6,7 +6,7 @@
 /*   By: lagea < lagea@student.s19.be >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 22:29:25 by lagea             #+#    #+#             */
-/*   Updated: 2024/04/22 23:20:01 by lagea            ###   ########.fr       */
+/*   Updated: 2024/04/22 23:48:40 by lagea            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int ft_strlen(const char* str)
     return len;
 }
 
-int ft_strchr_index(const char *str)
+int ft_strchr_index(char *str)
 {
     int index;
 
@@ -51,17 +51,17 @@ char *ft_strlcat(char *buff,char *stash, int n)
         *stash++ = *buff++;
         i++;
     }
+    *stash = '\0';
     return stash;
 }
 
-#include <stdio.h>
 
-int main()
-{
-    char stash[10] = "te\t";
-    char *buff = "st";
+// int main()
+// {
+//     char stash[10] = "te\t";
+//     char *buff = "st";
 
-    ft_strlcat(buff, stash, 2);
-    printf("%s",stash);
-    return 0;
-}
+//     ft_strlcat(buff, stash, 2);
+//     printf("%s",stash);
+//     return 0;
+// }
