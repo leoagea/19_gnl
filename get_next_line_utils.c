@@ -6,7 +6,7 @@
 /*   By: lagea < lagea@student.s19.be >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 22:29:25 by lagea             #+#    #+#             */
-/*   Updated: 2024/04/22 23:48:40 by lagea            ###   ########.fr       */
+/*   Updated: 2024/04/23 01:13:30 by lagea            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,29 +39,44 @@ int ft_strchr_index(char *str)
     return index + 1;
 }
 
-char *ft_strlcat(char *buff,char *stash, int n)
+char *ft_strlcat(char *src,char *dst, int n)
 {
     int i;
 
     i = 0;
-    while(*stash)
-        stash++;
-    while(i < n && *buff)
+    while(*dst)
+        dst++;
+    while(i < n && *src)
     {
-        *stash++ = *buff++;
+        *dst++ = *src++;
         i++;
     }
-    *stash = '\0';
-    return stash;
+    *dst = '\0';
+    return dst;
+}
+
+char *ft_strlcpy(char *src, char *dst)
+{
+    int i;
+
+    i = 0;
+    while(src[i])
+    {
+        dst[i] = src[i];
+        i++;
+    }
+    dst[i] = '\0';
+    return dst;
 }
 
 
 // int main()
 // {
-//     char stash[10] = "te\t";
-//     char *buff = "st";
+//     char *stash;
+//     char *buff = "test!";
 
-//     ft_strlcat(buff, stash, 2);
+//     stash = (char *) malloc (sizeof(char) * (BUFFER_SIZE + 1));
+//     ft_strlcpy(buff, stash, BUFFER_SIZE);
 //     printf("%s",stash);
 //     return 0;
 // }
