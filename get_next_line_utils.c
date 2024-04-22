@@ -5,49 +5,33 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lagea < lagea@student.s19.be >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/30 01:47:55 by lagea             #+#    #+#             */
-/*   Updated: 2024/04/06 18:26:26 by lagea            ###   ########.fr       */
+/*   Created: 2024/04/22 22:29:25 by lagea             #+#    #+#             */
+/*   Updated: 2024/04/22 22:48:34 by lagea            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int is_backspace(char *line) //test ok
+int ft_strlen(const char* str)
 {
-    size_t index;
+    int len;
 
-    index = 0;
-    if (!line)
+    len = 0;
+    if(!str)
         return 0;
-    while (line [index])
+    while (*str++)
     {
-        if(line [index] == '\n')
-            return 1;
-        index++;
+        len++;
     }
+    return len;
+}
+
+#include <stdio.h>
+
+int main()
+{
+    char *s = NULL;
+
+    printf("%d",ft_strlen(s));
     return 0;
-}
-
-size_t	ft_strlen(const char *s)
-{
-	int	len;
-
-	len = 0;
-	while (s[len] != '\0')
-		len++;
-	return (len);
-}
-
-char	*ft_strrchr(const char *str, int c)
-{
-	int	len;
-    
-    len = ft_strlen(str);
-	while (len >= 0)
-	{
-		if (str [len] == (char) c)
-			return (((char *)str + len));
-		len--;
-	}
-	return (NULL);
 }
