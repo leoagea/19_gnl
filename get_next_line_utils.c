@@ -6,7 +6,7 @@
 /*   By: lagea < lagea@student.s19.be >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 22:29:25 by lagea             #+#    #+#             */
-/*   Updated: 2024/04/22 23:02:21 by lagea            ###   ########.fr       */
+/*   Updated: 2024/04/22 23:20:01 by lagea            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,29 @@ int ft_strchr_index(const char *str)
     return index + 1;
 }
 
+char *ft_strlcat(char *buff,char *stash, int n)
+{
+    int i;
+
+    i = 0;
+    while(*stash)
+        stash++;
+    while(i < n && *buff)
+    {
+        *stash++ = *buff++;
+        i++;
+    }
+    return stash;
+}
+
 #include <stdio.h>
 
 int main()
 {
-    char *s = "te\nst";
+    char stash[10] = "te\t";
+    char *buff = "st";
 
-    printf("%d",ft_strrchr_index(s));
+    ft_strlcat(buff, stash, 2);
+    printf("%s",stash);
     return 0;
 }
