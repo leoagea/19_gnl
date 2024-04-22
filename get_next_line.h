@@ -6,7 +6,7 @@
 /*   By: lagea < lagea@student.s19.be >             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 22:29:35 by lagea             #+#    #+#             */
-/*   Updated: 2024/04/22 22:47:09 by lagea            ###   ########.fr       */
+/*   Updated: 2024/04/22 23:02:25 by lagea            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 
 #define BUFFER_SIZE 5
 
+/* get_next_line_utils */
 char *get_next_line(int fd);
+int ft_strchr_index(const char *str);
 
 #endif
