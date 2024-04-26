@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lagea < lagea@student.s19.be >             +#+  +:+       +#+        */
+/*   By: lagea <lagea@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 22:29:35 by lagea             #+#    #+#             */
-/*   Updated: 2024/04/23 01:13:40 by lagea            ###   ########.fr       */
+/*   Updated: 2024/04/26 15:57:01 by lagea            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,17 @@
 
 #define BUFFER_SIZE 5
 
+/* get_next_line */
+
+char *ft_put_in_stash(char *buff, char *stash,int i);
+
 /* get_next_line_utils */
-int ft_strlen(const char* str);
+
+int ft_is_backslah(char *str);
+int ft_strlen(char* str);
 int ft_strchr_index(char *str);
 char *ft_strlcat(char *src,char *dst, int n);
 char *ft_strlcpy(char *src, char *dst);
+char *ft_substr(char *stash);
 
 #endif

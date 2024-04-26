@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lagea < lagea@student.s19.be >             +#+  +:+       +#+        */
+/*   By: lagea <lagea@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 22:29:14 by lagea             #+#    #+#             */
-/*   Updated: 2024/04/23 01:45:18 by lagea            ###   ########.fr       */
+/*   Updated: 2024/04/26 15:56:51 by lagea            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,47 +14,69 @@
 
 char *get_next_line(int fd)
 {
+    int i;
     char *stash;
+    char *line;
+    size_t read_return;
     static char buff[BUFFER_SIZE + 1];
     
     if (fd < 0)
         return NULL;
-    if (read(fd, buff, BUFFER_SIZE) == 0)
+    i = 0;
+    stash = NULL;
+    read_return = read(fd, buff, BUFFER_SIZE);
+    // printf("%zu\n",read_return);
+    if (read_return == 0 || read_return == -1)
         return NULL;
-    // if (buff)
-    //     return NULL; //buff pas vide = appelle func pour lire 2 eme ligne
-    ft_strlcpy(buff,stash);
-    printf("%s\n",stash);
-    return NULL;
+    else 
+    {
+        // printf("%d\n",1);
+        stash = (char *) malloc((3 + 1) * sizeof(char));
+        stash = ft_strlcpy(buff,stash);
+        while(ft_is_backslah(stash) == 0 && read_return != 0 && read_return != -1)
+        {
+            // printf("%d\n",2);
+            // printf("stash : %s\n",stash);
+            read_return = read(fd, buff, BUFFER_SIZE);
+            stash = ft_put_in_stash(buff,stash,i);
+            // printf("read retrun : %zu\n",read_return);
+            i++;
+        }
+        line = ft_substr(stash);
+        // printf("\nline final : %s",line);
+        // printf("1");
+    }
+    return line;
 }
 
-// char *ft_first_malloc_stash(char *buff, char *stash)
+// char *ft_put_end_of_line(char *buff, char *stash,int i)
 // {
-//     int stop_buff;
+
     
-//     stop_buff = ft_strchr_index(buff);
-//     stash = (char *)malloc((stop_buff + 1) * sizeof(char));
-//     ft_strlcpy(buff,stash);
-//     return stash;
 // }
 
-// char *ft_malloc_stash(char *buff, char *stash)
-// {
-//     int stop_buff;
-//     int len_stash;
-    
-//     stop_buff = ft_strchr_index(buff);
-//     len_stash = ft_strlen(stash);
-//     free(stash);
-//     stash = (char *)malloc((len_stash + stop_buff + 1) * sizeof(char));
-//     ft_strlcat(buff,stash,stop_buff);
-//     return stash;
-// }
+char *ft_put_in_stash(char *buff, char *stash,int i)
+{
+    free(stash);
+    stash = (char *) malloc(((i * 3) + 1) * sizeof(char));
+    ft_strlcat(buff,stash,BUFFER_SIZE);
+    // printf("i : %d\n",i);
+    return stash;
+}
 
 int main()
 {
+    char *line;
     int fd = open("./test.txt",O_RDONLY);
-    get_next_line(fd);
+    line = get_next_line(fd);
+    printf("%s\n",line);
+    free(line);
+    line = get_next_line(fd);
+    printf("%s\n",line);
+    free(line);
+    line = get_next_line(fd);
+    printf("%s\n",line);
+    free(line);
 }
 
 /*
