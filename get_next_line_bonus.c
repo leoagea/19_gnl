@@ -1,40 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lagea <lagea@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 22:29:14 by lagea             #+#    #+#             */
-/*   Updated: 2024/04/29 17:50:31 by lagea            ###   ########.fr       */
+/*   Updated: 2024/04/29 18:21:50 by lagea            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*get_next_line(int fd)
 {
-	static char	*stash;
+	static char	*stash[MAX_FD];
 	char		*line;
 	char		*buffer;
 
 	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 /*|| read(fd, 0, 0) < 0*/)
 	{
-		free(stash);
 		free(buffer);
-		stash = NULL;
 		buffer = NULL;
 		return (NULL);
 	}
 	if (!buffer)
 		return (NULL);
-	line = ft_fill_line_buffer(fd, stash, buffer);
+	line = ft_fill_line_buffer(fd, stash[fd], buffer);
 	free(buffer);
 	buffer = NULL;
 	if (!line)
 		return (NULL);
-	stash = ft_set_line(line);
+	stash[fd] = ft_set_line(line);
 	return (line);
 }
 
@@ -49,7 +47,7 @@ char	*ft_set_line(char *line_buffer)
 	if (line_buffer[i] == 0 || line_buffer[1] == 0)
 		return (NULL);
 	line = ft_substr(line_buffer, i + 1, ft_strlen(line_buffer) - i);
-	if (*line == 0)
+	if (!line)
 	{
 		free(line);
 		line = NULL;
