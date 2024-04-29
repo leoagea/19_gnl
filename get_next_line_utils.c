@@ -6,7 +6,7 @@
 /*   By: lagea <lagea@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 22:29:25 by lagea             #+#    #+#             */
-/*   Updated: 2024/04/29 15:18:12 by lagea            ###   ########.fr       */
+/*   Updated: 2024/04/29 17:00:28 by lagea            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_strlen(const char *str)
 	return (len);
 }
 
-char    *ft_strchr_index(char *str)
+char	*ft_strchr_index(char *str)
 {
 	unsigned int	i;
 
@@ -34,42 +34,12 @@ char    *ft_strchr_index(char *str)
 	while (str[i])
 	{
 		if (str[i] == '\n')
-			return ((char *) &str[i]);
+			return ((char *)&str[i]);
 		i++;
 	}
 	if (str[i] == '\n')
-		return ((char *) &str[i]);
+		return ((char *)&str[i]);
 	return (NULL);
-}
-
-char	*ft_strlcat(char *src, char *dst, int n)
-{
-	int	i;
-
-	i = 0;
-	while (*dst)
-		dst++;
-	while (i < n && *src)
-	{
-		*dst++ = *src++;
-		i++;
-	}
-	*dst = '\0';
-	return (dst);
-}
-
-char	*ft_strlcpy(char *src, char *dst)
-{
-	int	i;
-
-	i = 0;
-	while (src[i])
-	{
-		dst[i] = src[i];
-		i++;
-	}
-	dst[i] = '\0';
-	return (dst);
 }
 
 char	*ft_strjoin(char *s1, char *s2)
@@ -97,7 +67,7 @@ char	*ft_strdup(char *s1)
 	char			*dest;
 	unsigned int	i;
 
-	dest = (char *) malloc(ft_strlen(s1) + 1);
+	dest = (char *)malloc(ft_strlen(s1) + 1);
 	if (!dest)
 		return (NULL);
 	i = 0;
@@ -110,9 +80,9 @@ char	*ft_strdup(char *s1)
 	return (dest);
 }
 
-char	*ft_substr(char *s, unsigned int start, size_t len)
+char	*ft_substr(char *s, int start, int len)
 {
-	size_t	i;
+	int		i;
 	char	*str;
 
 	if (!s)
@@ -133,17 +103,3 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 	str[i] = 0;
 	return (str);
 }
-
-// int main()
-// {
-//     // char *stash;
-//     char *buff = "testde \nstrchr";
-//     int len_s = ft_strlen(buff);
-    
-//     // stash = (char *) malloc (sizeof(char) * (BUFFER_SIZE + 1));
-//     char* s = ft_strchr_index(buff);
-//     printf("%s",s);
-//     int index = ft_strlen(s);
-//     printf("%d",len_s - index);
-//     return (0);
-// }
