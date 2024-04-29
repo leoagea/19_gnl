@@ -6,7 +6,7 @@
 /*   By: lagea <lagea@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 22:29:35 by lagea             #+#    #+#             */
-/*   Updated: 2024/04/26 15:57:01 by lagea            ###   ########.fr       */
+/*   Updated: 2024/04/29 15:18:39 by lagea            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,21 @@
 #include <stdio.h>  //printf
 
 
-#define BUFFER_SIZE 5
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1
+# endif
 
 /* get_next_line */
 
 char *ft_put_in_stash(char *buff, char *stash,int i);
 
 /* get_next_line_utils */
-
-int ft_is_backslah(char *str);
-int ft_strlen(char* str);
-int ft_strchr_index(char *str);
+int ft_strlen(const char* str);
+char *ft_strchr_index(char *str);
 char *ft_strlcat(char *src,char *dst, int n);
 char *ft_strlcpy(char *src, char *dst);
-char *ft_substr(char *stash);
+char	*ft_strdup(char *s1);
+char	*ft_strjoin(char *s1, char *s2);
+char	*ft_substr(char *s, unsigned int start, size_t len);
 
 #endif
