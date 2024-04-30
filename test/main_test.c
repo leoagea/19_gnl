@@ -9,11 +9,13 @@ int main(int argc, char **argv)
   char *str;
   int fd = open(argv[argc - 1], O_RDONLY);
   int i = 0;
-  printf("%i\n", BUFFER_SIZE);
-  while (!str)
+  printf("%li\n", BUFFER_SIZE);
+  while (++i)
   {
     str = get_next_line(fd);
     printf("%i = %s", i, str);
+    if (!str)
+      return 0;
     free(str);
   }
   system("leaks a.out");

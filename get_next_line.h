@@ -6,7 +6,7 @@
 /*   By: lagea <lagea@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 22:29:35 by lagea             #+#    #+#             */
-/*   Updated: 2024/04/29 17:30:51 by lagea            ###   ########.fr       */
+/*   Updated: 2024/04/30 20:47:20 by lagea            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 # define GET_NEXT_LINE_H
 
 # include <fcntl.h>  //open
+# include <limits.h> //Macro INT_MAX
 # include <stddef.h> //NULL
-# include <stdio.h>  //printf
-# include <stdlib.h>
+# include <stdlib.h> //free
 # include <unistd.h> //read
 
 # ifndef BUFFER_SIZE

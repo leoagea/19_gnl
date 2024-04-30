@@ -6,7 +6,7 @@
 /*   By: lagea <lagea@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 22:29:14 by lagea             #+#    #+#             */
-/*   Updated: 2024/04/29 17:50:31 by lagea            ###   ########.fr       */
+/*   Updated: 2024/04/30 20:19:09 by lagea            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char	*get_next_line(int fd)
 	char		*line;
 	char		*buffer;
 
+	if (BUFFER_SIZE >= INT_MAX)
+		return (NULL);
 	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 	{
@@ -49,6 +51,8 @@ char	*ft_set_line(char *line_buffer)
 	if (line_buffer[i] == 0 || line_buffer[1] == 0)
 		return (NULL);
 	line = ft_substr(line_buffer, i + 1, ft_strlen(line_buffer) - i);
+	if (!line)
+		return (NULL);
 	if (*line == 0)
 	{
 		free(line);
