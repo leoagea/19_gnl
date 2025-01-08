@@ -9,7 +9,7 @@ int main(int argc, char **argv)
   char *str;
   int fd = open(argv[argc - 1], O_RDONLY);
   int i = 0;
-  printf("%li\n", BUFFER_SIZE);
+  printf("%i\n", BUFFER_SIZE);
   while (++i)
   {
     str = get_next_line(fd);
